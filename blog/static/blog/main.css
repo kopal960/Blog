@@ -1,0 +1,19 @@
+body{
+    background: #dbfbff;
+}
+.left{
+    display : flex;
+    justify-content: left;
+    text-align: left;
+}
+.heading {
+    color:black;
+}
+.equal{
+    width: 75px;
+    height: 75px;
+    aspect-ratio: 1;
+}
+.bg-white{
+    background: ivory;
+}

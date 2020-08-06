@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <div class="card tc center mg-10  " style="margin-left: 25rem; margin-right:25rem ;">
+    <div class="card-body" >
+      <h5 class="card-title "></h5>
+<!--       <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+      <div class="card-text" width=20rem height=30rem>
+        <form method='POST'>
+          {% csrf_token %}
+          <div class="form-group">
+              <fieldset style = "text-align: justify; font-size: medium;" >
+                  <legend style="text-align: center;">Delete Post</legend>
+              </fieldset>
+          </div>
+          <h4>Are you sure you want to delete {{object.title}}?</h4>
+          <button type="submit" class="btn btn-outline-danger">Yes,DELETE the post</button>
+          <a href={% url "post-detail" object.pk %} class="btn btn-outline-secondary">No,Don't delete</a>
+        </form>
+        <hr>   
+  </div>
+{% endblock content %}

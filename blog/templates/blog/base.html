@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <title>Django Blog</title>
+</head>
+    <body style="background: #dbfbff;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                {% if posts %}
+                  <li class="nav-item active "> 
+                {% else %}
+                  <li class="nav-item">
+                {% endif %}
+                  <a class="nav-link light" href= {% url "blog-home" %} > Blogs  <span class="sr-only"> (current) </span></a>
+                </li>
+                {% if page == 2 %}
+                  <li class="nav-item active "> 
+                {% else %}
+                  <li class="nav-item">
+                {% endif %}
+                <a class="nav-link " href= {% url "blog-about" %}> About
+                      <span class="sr-only">
+                          (current)
+                      </span>
+                  </a> 
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li> -->
+              </ul>
+              <div class = "left">
+              <ul class="navbar-nav mr-auto my-2 my-lg-0 left">
+                {% if user.is_authenticated %}
+                  <li class="nav-item btn border-left dropdown pd-3">
+<!--                <h2 class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--> 
+                    <h3 class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    
+                          {{user.username}}
+                    </h3>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href={% url "profile" %}>Profile</a>
+                      <a class="dropdown-item" href={% url "user-posts" user.username %}>My Blogs</a>
+                      <a class="dropdown-item" href={% url "newpost" %}> New Post +</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href={% url "logout" %}> Logout </a>
+                    </div>
+                  </li>
+                {% else %}
+                {% if page == 5 %}
+                  <li class="nav-item active left "> 
+                {% else %}
+                  <li class="nav-item left">
+                {%  endif %}
+              <a href={% url "newpost" %} class= " nav-link"> New Post+</a>
+                  {% if page == 3 %}
+                    <li class="nav-item active left "> 
+                  {% else %}
+                    <li class="nav-item left">
+                  {%  endif %}
+                  <a href={% url "login" %} class= " nav-link"> Login </a>
+                  </li>
+                  {% if page == 4 %}
+                    <li class="nav-item active left">               
+                  {% else %}
+                    <li class="nav-item  left">               
+                  {% endif %}
+                    <a href={% url "register" %} class= "my-2 my-lg-0 nav-link"> SignUp/Register </a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>  
+            <form class="form-inline my-2 my-lg-0" action= {% url "blog-home" %} method='GET' >
+                <input class="form-control mr-sm-2 border" type="search" placeholder="Search by author or title" name='query' aria-label="Search">
+                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            </div>
+          </nav>
+        {% if messages %}
+          {% for message in messages %}
+            {%  if message.tags == error %}
+              <div class="alert alert-danger">{{message}}</div>
+            {% else %}
+              <div class="alert alert-{{message.tags}}">{{message}}</div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% block content %}
+
+        {% endblock %}
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </body>
+</html>

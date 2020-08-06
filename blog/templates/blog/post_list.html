@@ -1,0 +1,68 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <br><br>
+  {% if posts %}
+        {% for post in posts %}
+          <div class="container media border">
+            <img src={{post.author.profile.image.url}} class="mr-3 mt-2 rounded-circle equal"  alt="image">
+            <div class="media-body">
+              <div class = " mt-2" style = "display : flex;">
+                <a href = {% url "user-posts" post.author.username %} class = "mr-3"> <h6 >  {{post.author}}    </h6>  </a>
+                <span class ='text-muted' > {{post.date_posted|date:"d F,Y"}}  </span>
+              </div> 
+              <hr class="mt-0 mb-0">
+              <h3 class = "text-monospace mt-0" >
+                <a href={% url "post-detail" post.pk %} class="heading">{{post.title}}</a>
+              </h3>
+                    {% if post.description != None  %}
+                <div class="btn" data-toggle="collapse" data-target= {{ '#'|add:post.unique }} aria-expanded="false" aria-controls={{post.unique}}>
+                  Show Description...
+                </div>
+                <div class="collapse" id = {{post.unique}} >
+                  <p> {{post.description}} </p>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          <br>
+        {% endfor %}
+  {% elif userposts %}
+    <div class="bg-white">
+      <h4 class = "text-monospace font-italic container">Blogs by {{ view.kwargs.username }}</h4>
+    </div>
+    {% for post in userposts %}
+      <div class="container media border">
+        <img src={{post.author.profile.image.url}} class="mr-3 mt-2 rounded-circle equal"  alt="image">
+        <div class="media-body">
+          <div class = " mt-2" style = "display : flex;">
+            <a href = {% url "user-posts" post.author.username %} class = "mr-3"> <h6 >  {{post.author}}    </h6>  </a>
+            <span class ='text-muted' > {{post.date_posted|date:"d F,Y"}}  </span>
+          </div> 
+          <hr class="mt-0 mb-0">
+          <h5 class = "text-monospace font-weight-bold mt-0" >
+            <a href={% url "post-detail" post.pk %} class="heading">{{post.title}}</a>
+          </h5>
+                {% if post.description != None  %}
+            <div class="btn" data-toggle="collapse" data-target= {{ '#'|add:post.unique }} aria-expanded="false" aria-controls={{post.unique}}>
+              Show Description...
+            </div>
+            <div class="collapse" id = {{post.unique}} >
+              <p> {{post.description}} </p>
+            </div> 
+          {% endif %}
+        </div>
+      </div>
+      <br>
+    {% endfor %}
+    {% if user.username == view.kwargs.username %}
+        <footer class="container">
+          <a href={% url "newpost" %} class="btn btn-outline-primary">Create New Post</a>
+        </footer>
+        <!-- {% elif user.is_authenticated %}
+    <div class="bg-white container">
+      <h4 class = "text-monospace font-italic container">You have not written any blogs yet.</h4>
+      <h6><a   class="ml-3" href={% url "newpost" %}> Write one now!</a></h6>
+    </div>  -->
+    {% endif %}     
+  {% endif %}
+{% endblock content %}

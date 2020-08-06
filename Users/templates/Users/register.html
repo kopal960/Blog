@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="card tc center mg-10  " style="margin-left: 25rem; margin-right:25rem ;">
+    <div class="card-body" >
+      <h5 class="card-title "></h5>
+<!--       <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+      <div class="card-text" width=20rem height=30rem>
+        <form method='POST'>
+            {% csrf_token %}
+            <div class="form-group">
+                <fieldset style = "text-align: justify; font-size: medium;" >
+                    <legend style="text-align: center;">Login form </legend>
+                    <hr>
+                        {{ form|crispy }}
+                </fieldset>
+            </div>
+            <button type="submit" class="btn btn-outline-primary">SignUp</button>
+        </form> 
+        <hr>   
+        <span class = 'ml-5 '> 
+            <small class= "text-muted">Already Have an Account?</small>  
+            <button type="button" class="btn btn-secondary btn-sm"> <a href={% url "login" %} class=" ml-2 card-link" style="color:white">Login</a></button>
+            </button>      
+        </span>
+  </div>
+{% endblock content %}

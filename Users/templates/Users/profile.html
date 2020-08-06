@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class = "card container mt-5 pd-2">
+          <div  id="navbardropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="media btn" data-toggle="tooltip" data-placement="top" title="Update/Change Profile">
+                <img src={{user.profile.image.url}} class=" rounded-circle border border-secondary equal"  alt="">
+                <div class="media-body mt-2 ml-2 text-left">
+                  <h5 class="">{{user.username}}</h5>
+                  {{user.email}}
+                </div>
+            </div> 
+          </div>
+          <div class="dropdown-menu ">
+            <div class = "ml-3 mt-3 mr-3 mb3">
+              <form method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                  <fieldset >
+                    <legend >
+                        "Change Profile"                        
+                    </legend>
+                      <hr>
+                      {{u_form|crispy}}
+                      {{p_form|crispy}}
+                  </fieldset>
+                <button type="submit" class="btn btn-outline-primary">Change</button>
+              </form> 
+          </div>
+        </div>
+      </div>
+{% endblock %}
