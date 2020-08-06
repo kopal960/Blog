@@ -2,9 +2,10 @@ body{
     background: #dbfbff;
 }
 .left{
-    display : flex;
-    justify-content: left;
-    text-align: left;
+   
+}
+.right{
+    margin-right: 0;
 }
 .heading {
     color:black;

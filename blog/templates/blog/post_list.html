@@ -35,7 +35,7 @@
         <img src={{post.author.profile.image.url}} class="mr-3 mt-2 rounded-circle equal"  alt="image">
         <div class="media-body">
           <div class = " mt-2" style = "display : flex;">
-            <a href = {% url "user-posts" post.author.username %} class = "mr-3"> <h6 >  {{post.author}}    </h6>  </a>
+            <a href = {% url "user-posts" view.kwargs.username %} class = "mr-3"> <h6 >  {{post.author}}    </h6>  </a>
             <span class ='text-muted' > {{post.date_posted|date:"d F,Y"}}  </span>
           </div> 
           <hr class="mt-0 mb-0">
@@ -53,16 +53,35 @@
         </div>
       </div>
       <br>
-    {% endfor %}
-    {% if user.username == view.kwargs.username %}
-        <footer class="container">
-          <a href={% url "newpost" %} class="btn btn-outline-primary">Create New Post</a>
-        </footer>
-        <!-- {% elif user.is_authenticated %}
-    <div class="bg-white container">
-      <h4 class = "text-monospace font-italic container">You have not written any blogs yet.</h4>
-      <h6><a   class="ml-3" href={% url "newpost" %}> Write one now!</a></h6>
-    </div>  -->
-    {% endif %}     
+    {% endfor %} 
+  {% elif user.username == view.kwargs.username %}
+    <h2 class="container bg-white font-italic">You have not created any posts yet.</div>
+  {% elif page %}
+    <h2 class="container bg-white font-italic">{{view.kwargs.username}} has not created any posts yet.</div>
   {% endif %}
+  {% if user.username == view.kwargs.username %}
+    <footer class="container">
+      <a href={% url "newpost" %} class="btn btn-outline-primary">Create New Post</a>
+    </footer>
+  {% endif %} 
+  {% if is_paginated %}
+  <div class="container">
+    {% if page_obj.has_previous %}
+      <a class="btn btn-outline-info mb-4 mr-5" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      <a class="btn btn-outline-info mb-4 ml-5 mr-2" href="?page=1">First</a>
+    {% endif %}
+    {% for num in page_obj.paginator.page_range %}
+      {% if page_obj.number == num %}
+        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+      {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+    
+    {% if page_obj.has_next %}
+      <a class="btn btn-outline-info mb-4 ml-2 mr-5" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      <a class="btn btn-outline-info mb-4 lg ml-5" href="?page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
+  </div>
+{% endif %}
 {% endblock content %}
