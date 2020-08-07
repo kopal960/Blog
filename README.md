@@ -14,6 +14,8 @@ The application allows all users to  read posts written by registered users. The
 	![Login](https://user-images.githubusercontent.com/62306638/89672384-30328280-d902-11ea-8d15-56ae927975a4.PNG)
 - Register View
 	![register](https://user-images.githubusercontent.com/62306638/89672451-4b9d8d80-d902-11ea-9c59-0d20c2cd0618.PNG)
+- Profile Update page
+	![profile](https://user-images.githubusercontent.com/62306638/89674226-70473480-d905-11ea-9568-42cfaf227fc3.PNG)
 - Search Feature to search the posts by author name or title
 	![search](https://user-images.githubusercontent.com/62306638/89672545-74258780-d902-11ea-87f7-1b4f78744ba6.PNG)
 	
