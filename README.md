@@ -2,7 +2,21 @@
 
 
 The application allows all users to  read posts written by registered users. The registered users can create , update and delete their posts. They can update their profile which includes their username,email and a display picture. They can also comment on other users’ posts. The application as expected also has a login and SignUp form for users who wish to register and login to the website. Also it has a search feature that allows users to search posts by their title or author.
+- blogs listing view
+	![list](https://user-images.githubusercontent.com/62306638/89671244-44758000-d900-11ea-8c72-33874e1de368.PNG)
+- Creating a new Post
+	![newpost](https://user-images.githubusercontent.com/62306638/89671546-cb2a5d00-d900-11ea-9ccc-9f37f2ff4d33.PNG)
+	![detail](https://user-images.githubusercontent.com/62306638/89671673-09278100-d901-11ea-8764-1a2b5bbd7ec5.PNG)
+- Detail view of a Post with comments and comment form
+	![detail1](https://user-images.githubusercontent.com/62306638/89672236-f9f50300-d901-11ea-8157-530d7bccedd0.PNG)
 
+- Login View
+	![Login](https://user-images.githubusercontent.com/62306638/89672384-30328280-d902-11ea-8d15-56ae927975a4.PNG)
+- Register View
+	![register](https://user-images.githubusercontent.com/62306638/89672451-4b9d8d80-d902-11ea-9c59-0d20c2cd0618.PNG)
+- Search Feature to search the posts by author name or title
+	![search](https://user-images.githubusercontent.com/62306638/89672545-74258780-d902-11ea-87f7-1b4f78744ba6.PNG)
+	
 ## Components
 
 - manage.py: Django's command-line utility for administrative tasks.
