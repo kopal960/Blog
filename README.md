@@ -3,7 +3,7 @@
 
 The application allows all users to  read posts written by registered users. The registered users can create , update and delete their posts. They can update their profile which includes their username,email and a display picture. They can also comment on other users’ posts. The application as expected also has a login and SignUp form for users who wish to register and login to the website. Also it has a search feature that allows users to search posts by their title or author.
 - blogs listing view
-	![list](https://user-images.githubusercontent.com/62306638/89671244-44758000-d900-11ea-8c72-33874e1de368.PNG)
+	![list](https://user-images.githubusercontent.com/62306638/89673208-953aa800-d903-11ea-8a8d-b71269561a36.PNG)
 - Creating a new Post
 	![newpost](https://user-images.githubusercontent.com/62306638/89671546-cb2a5d00-d900-11ea-9ccc-9f37f2ff4d33.PNG)
 	![detail](https://user-images.githubusercontent.com/62306638/89671673-09278100-d901-11ea-8764-1a2b5bbd7ec5.PNG)
