@@ -34,7 +34,7 @@ class PostListView(ListView):
     def get_queryset(self,*args,**kwargs):
         post_filtered = Post.objects.filter(Q(title__icontains=self.query) |Q(author__username__icontains=self.query) )
         ordering = ['-date_posted']
-        return post_filtered.order_by('-date_posted')
+        return post_filtered.order_by('-date_posted','-pk')
     def get(self, request):
         if request.GET.get('query'):
             self.query = request.GET.get('query')
@@ -51,14 +51,14 @@ class UserPostListView(ListView):
         return context
     def get_queryset(self,*args,**kwargs):
         curUser = get_object_or_404(User , username = self.kwargs.get('username'))
-        return Post.objects.filter(author =curUser).order_by('-date_posted')
+        return Post.objects.filter(author =curUser).order_by('-date_posted','-pk')
 class PostDetailView(DetailView ):
     model = Post
     context = {}
     def get_context_data(self, **kwargs):
         post = get_object_or_404(Post , pk = self.kwargs.get('pk'))
         ordering = ['-date_posted']
-        comments = Comment.objects.filter(post= post).filter( active=True ).order_by('-dated')
+        comments = Comment.objects.filter(post= post).filter( active=True ).order_by('-dated' ,'-id')
         context = super(PostDetailView, self).get_context_data(**kwargs)
         context['form'] = CreateComment()
         context['comments'] = comments
