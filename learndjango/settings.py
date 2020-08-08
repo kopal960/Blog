@@ -20,12 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k6=330ng^k)9k_6cco8#7x7&3=lbq6dpxf27^g9cumg0q3$tzc'
-
+#SECRET_KEY = 'k6=330ng^k)9k_6cco8#7x7&3=lbq6dpxf27^g9cumg0q3$tzc'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['blog-project-django.herokuapp.com',"127.0.0.1"]
 
 
 # Application definition
@@ -119,7 +118,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+STATIC_ROOT= os.path.join(BASE_DIR , 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
 MEDIA_URL = '/media/'
