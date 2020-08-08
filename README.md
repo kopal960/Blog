@@ -27,7 +27,9 @@ The application allows all users to  read posts written by registered users. The
 	- urls.py: This file stores the root urls or paths of the web application.So, it is referred to locate templates in the app directory for the given path.
 - blog: This directory handles all the views, models, forms , templates etc. related to Posts and Comments.
 	- models.py: It contains the model for Post and Comment .eg of model for Comments:
+		![model](https://user-images.githubusercontent.com/62306638/89701825-479c5a80-d958-11ea-9a96-00e6a126942f.PNG)
 	- views.py:  It contains function-based and class based views related to the above models. Eg. view for post creation form:
+		![view](https://user-images.githubusercontent.com/62306638/89701839-6b5fa080-d958-11ea-903a-c179e0df779a.PNG)
 	- admin.py: This file is for register the models created on admin site.
 	- Templates: This directory contains the django templates(html files) for rendering to the web pages.
 - Users:Similarly, this directory  has the models.py ,views.py ,forms.py files and templates directory which handle the models, views ,forms, templates etc. related to the User model.
