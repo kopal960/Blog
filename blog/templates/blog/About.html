@@ -1,9 +1,48 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h1>
-        About
-    </h1>
-    <p>
-        text
-    </p>
+    
+    <div class = "container" style="font-size:larger;">
+        <h2>About</h2>
+        
+        <div>
+            <h5 class="mt-3">
+                Blogs 
+            </h5>
+            Displays all the blogs. Pagination is applied, and links are provided to navigate to the pages of blogs.
+            Each blog includes display picture of the author , link to all the posts of the author of post, title of the post and short description
+            if provided by the author.
+        </div>
+        <div>
+            <h5>
+                Login and SignUp 
+            </h5> 
+            Registered users can login and the other users can SignUp using the links given on the navigation bar.
+        </div>
+        
+        <div>
+            <h5 class="mt-3">
+                Profile
+            </h5>
+            For every registered user a profile page is there. Users can update their profile from here.The profile page is visible
+            only to the user of that profile.
+        </div>
+        
+        <div>
+            <h5 class="mt-3">
+                Post page
+            </h5>
+            Every post has a page for it. The author of the post can update and delete their post from this page.
+            For updating a post the user will be directed to a page with a form to update their post. The registered users can 
+            comment on the post.All users can view the content of the post and comments on that post on this page.
+        </div>
+       
+        <div>
+            <h5 class="mt-3">
+                Search
+            </h5>
+            Users can search for any post on the website by either the title of that post or the author of that post.
+            Search field is available on the navigation bar.
+        </div>
+       
+    </div>
 {% endblock content %}
