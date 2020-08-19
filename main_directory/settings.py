@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #SECRET_KEY = 'k6=330ng^k)9k_6cco8#7x7&3=lbq6dpxf27^g9cumg0q3$tzc'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG_VALUE')
 ALLOWED_HOSTS = ['blog-project-django.herokuapp.com',"127.0.0.1"]
 
 
@@ -124,5 +124,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = "blog-home"
-#LOGOUT_REDIRECT_URL = 
 LOGIN_URL = "login"

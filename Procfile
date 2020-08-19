@@ -1,1 +1,1 @@
-web: gunicorn learndjango.wsgi
+web: gunicorn main_directory.wsgi
