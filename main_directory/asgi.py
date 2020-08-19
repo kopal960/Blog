@@ -1,5 +1,5 @@
 """
-ASGI config for learndjango project.
+ASGI config for main_directory project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'learndjango.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main_directory.settings')
 
 application = get_asgi_application()

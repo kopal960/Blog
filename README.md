@@ -22,7 +22,7 @@ The application allows all users to  read posts written by registered users. The
 ## Components
 
 - manage.py: Django's command-line utility for administrative tasks.
-- Main project directory-learndjango :
+- Main project directory-main_directory :
 	- settings.py: This file stores all the configurations of the application’s django installations. 
 	- urls.py: This file stores the root urls or paths of the web application.So, it is referred to locate templates in the app directory for the given path.
 - blog: This directory handles all the views, models, forms , templates etc. related to Posts and Comments.
