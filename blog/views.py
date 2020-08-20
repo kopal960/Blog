@@ -4,8 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
 from django.contrib.auth.mixins import LoginRequiredMixin ,UserPassesTestMixin
 from django.views.generic import DetailView,UpdateView, DeleteView, ListView 
+from django.views.generic.base import RedirectView
 from .forms import CreatePost,CreateComment
-from .models import Post ,Comment
+from .models import Post ,Comment,Vote
 from django.db.models import Q 
 
 def about(request):
@@ -13,6 +14,7 @@ def about(request):
         'page' : 2
     }
     return render(request , 'blog/About.html',context)
+
 @login_required
 def newpost(request):
     if request.method == 'POST':
@@ -26,6 +28,7 @@ def newpost(request):
         form = CreatePost()
     context = { 'form':form }
     return render (request, "blog/post_form.html" , context)
+
 class PostListView(ListView):
     model = Post
     context_object_name = 'posts'
@@ -33,12 +36,12 @@ class PostListView(ListView):
     query=''
     def get_queryset(self,*args,**kwargs):
         post_filtered = Post.objects.filter(Q(title__icontains=self.query) |Q(author__username__icontains=self.query) )
-        ordering = ['-date_posted']
         return post_filtered.order_by('-date_posted','-pk')
     def get(self, request):
         if request.GET.get('query'):
             self.query = request.GET.get('query')
         return super().get(request)
+
 class UserPostListView(ListView):
     model = Post
     context_object_name = 'userposts'
@@ -49,10 +52,23 @@ class UserPostListView(ListView):
         context["posts_author"] = posts_author
         context['page'] = 1
         return context
+    query = ''
     def get_queryset(self,*args,**kwargs):
         curUser = get_object_or_404(User , username = self.kwargs.get('username'))
-        return Post.objects.filter(author =curUser).order_by('-date_posted','-pk')
-class PostDetailView(DetailView ):
+        return Post.objects.filter(author =curUser).filter(Q(title__icontains=self.query) |Q(author__username__icontains=self.query) ).order_by('-date_posted','-pk')
+    def get(self, request,username):
+        if request.GET.get('query'):
+            self.query = request.GET.get('query')
+        return super().get(request)
+
+def upvote(request,pk):
+    post = get_object_or_404(Post ,pk = pk)
+    vote = get_object_or_404(Vote , post = post, user= request.user)
+    vote.Like = not vote.Like
+    vote.save()
+    return redirect("post-detail" , pk )
+
+class PostDetailView(DetailView):
     model = Post
     context = {}
     def get_context_data(self, **kwargs):
@@ -62,6 +78,7 @@ class PostDetailView(DetailView ):
         context = super(PostDetailView, self).get_context_data(**kwargs)
         context['form'] = CreateComment()
         context['comments'] = comments
+        context['Upvotes'] = post.vote_set.filter(Like=True).count()
         return context
     def post(self, request, pk):
        post = get_object_or_404(Post, pk=pk)
@@ -71,6 +88,7 @@ class PostDetailView(DetailView ):
            form.instance.name = request.user
            form.save()
            return redirect('post-detail', post.pk) 
+
 class CPostDetailView(LoginRequiredMixin ,PostDetailView):
     model = Post
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin ,UpdateView):
@@ -85,6 +103,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin ,UpdateView):
         if self.request.user == post.author:
             return True
         return False
+
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin ,DeleteView):
     model = Post
     success_url = "/"

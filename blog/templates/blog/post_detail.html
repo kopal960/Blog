@@ -45,12 +45,14 @@
     {% if user.is_authenticated %}
       <footer class='container'>
         {% if request.user == object.author %}
+            <p>Upvotes : {{Upvotes}}</p>
             <a href= {% url "post-update" object.id %}><button class="btn btn-primary">Update Post</button></a>
             <a href={% url "post-delete" object.id %}><button class="btn btn-danger">Delete Post</button></a>
           </footer> 
         {% else %}
-            <img src = "../../../media/Upvote.png" width=30px height=30px>
-          </footer>
+        <a href={% url "upvote" object.id %}> <img src = "../../../media/Upvote.png" width=30px height=30px> </a>
+        {{Upvotes}}
+      </footer>
         {% endif %} 
       <br>
       <form method='POST' class="container">
@@ -60,11 +62,11 @@
                   {{ form|crispy}}
           </fieldset>
         <button type="submit" class="btn btn-outline-primary">Post</button>
-    </form> 
-  {% else %}
-    <div class= "container">
-      <hr>
-      <a href={% url "cpost-detail" post.id %}>Login to comment..</a>
-    </div>
-  {% endif %}
+      </form> 
+    {% else %}
+      <div class= "container">
+        <hr>
+        <a href={% url "cpost-detail" post.id %}>Login to comment or upvote..</a>
+      </div>
+    {% endif %}
 {% endblock content %}

@@ -14,7 +14,7 @@ class Post(models.Model):
     def unique(self):
         return "a" + str(self.id)
     def get_absolute_url(self):
-        return reverse( 'post-detail', kwargs={'pk': self.pk})
+        return reverse( 'post-detail', kwargs={'pk': self.pk })
 class Comment(models.Model):
     comment = models.CharField(max_length=1000)
     name = models.ForeignKey(User , on_delete=models.CASCADE)
@@ -23,3 +23,9 @@ class Comment(models.Model):
     active = models.BooleanField(default = True)
     def __str__(self):
         return self.comment
+class Vote(models.Model):
+    Like = models.BooleanField(default = False)
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    post = models.ForeignKey(Post , on_delete =models.CASCADE)
+    class Meta:
+        unique_together = ('user' , 'post')
