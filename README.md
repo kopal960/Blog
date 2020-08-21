@@ -8,7 +8,7 @@ The application allows all users to  read posts written by registered users. The
 	![newpost](https://user-images.githubusercontent.com/62306638/89671546-cb2a5d00-d900-11ea-9ccc-9f37f2ff4d33.PNG)
 	![detail](https://user-images.githubusercontent.com/62306638/89671673-09278100-d901-11ea-8764-1a2b5bbd7ec5.PNG)
 - Detail view of a Post with comments,comment form and upvote button
-	![new](https://user-images.githubusercontent.com/62306638/90871261-6539dd00-e3b8-11ea-84d4-d9e1d9fd2262.png)
+	![new](https://user-images.githubusercontent.com/62306638/90896579-86fb8a00-e3e1-11ea-838b-c5e558a624bd.png)
 
 - Login View
 	![Login](https://user-images.githubusercontent.com/62306638/89672384-30328280-d902-11ea-8d15-56ae927975a4.PNG)
