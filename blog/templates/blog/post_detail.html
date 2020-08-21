@@ -43,15 +43,15 @@
     </div>
     {% endfor %}
     {% if user.is_authenticated %}
-      <footer class='container'>
+      <div class='container mb-3'>
         <a href={% url "upvote" object.id %}>
           <button type="button" class="btn btn-primary">
             UpVote <span class="badge badge-light">{{Upvotes}}</span>
           </button> 
         </a>
-      </footer>
+      </div>
         {% if request.user == object.author %}
-          <div>  
+          <div class="container">  
             <a href= {% url "post-update" object.id %}><button class="btn btn-primary">Update Post</button></a>
             <a href={% url "post-delete" object.id %}><button class="btn btn-danger">Delete Post</button></a>
           </div> 
