@@ -9,11 +9,3 @@ db.sqlite3-journal
 # Django
 *.log
 local_settings.py
-
-
-
-
-
-
-
-
