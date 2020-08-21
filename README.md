@@ -1,14 +1,14 @@
 ## Overview
 
 
-The application allows all users to  read posts written by registered users. The registered users can create , update and delete their posts. They can update their profile which includes their username,email and a display picture. They can also comment on other users’ posts. The application as expected also has a login and SignUp form for users who wish to register and login to the website. Also it has a search feature that allows users to search posts by their title or author.
+The application allows all users to  read posts written by registered users. The registered users can create , update and delete their posts. They can update their profile which includes their username,email and a display picture. They can also comment and upvote other users’ posts. The application as expected also has a login and SignUp form for users who wish to register and login to the website. Also it has a search feature that allows users to search posts by their title or author.
 - blogs listing view
 	![list](https://user-images.githubusercontent.com/62306638/89673208-953aa800-d903-11ea-8a8d-b71269561a36.PNG)
 - Creating a new Post
 	![newpost](https://user-images.githubusercontent.com/62306638/89671546-cb2a5d00-d900-11ea-9ccc-9f37f2ff4d33.PNG)
 	![detail](https://user-images.githubusercontent.com/62306638/89671673-09278100-d901-11ea-8764-1a2b5bbd7ec5.PNG)
-- Detail view of a Post with comments and comment form
-	![detail1](https://user-images.githubusercontent.com/62306638/89672236-f9f50300-d901-11ea-8157-530d7bccedd0.PNG)
+- Detail view of a Post with comments,comment form and upvote button
+	![new](https://user-images.githubusercontent.com/62306638/90871261-6539dd00-e3b8-11ea-84d4-d9e1d9fd2262.png)
 
 - Login View
 	![Login](https://user-images.githubusercontent.com/62306638/89672384-30328280-d902-11ea-8d15-56ae927975a4.PNG)
