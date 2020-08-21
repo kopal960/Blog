@@ -100,7 +100,7 @@
             {% if userposts %}
               <form class="form-inline my-2 my-lg-0" action= {% url "user-posts" view.kwargs.username %} method='GET' >
             {% else %}
-              <form class="fo-inline my-2 my-lg-0" action= {% url "blog-home" %} method='GET' >                
+              <form class="form-inline my-2 my-lg-0" action= {% url "blog-home" %} method='GET' >                
             {% endif %}
                 <input class="form-control mr-sm-2 border" type="search" placeholder="Search by author or title" name='query' aria-label="Search">
                 <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
