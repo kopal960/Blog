@@ -34,7 +34,6 @@ The application allows all users to  read posts written by registered users. The
 	- Templates: This directory contains the django templates(html files) for rendering to the web pages.
 - Users:Similarly, this directory  has the models.py ,views.py ,forms.py files and templates directory which handle the models, views ,forms, templates etc. related to the User model.
 - media : It has the static media files required for the project which include display pictures of the registered users.
-- posts.json: this file has some sample posts which have been entered into the database.
 
 ## Database
 
