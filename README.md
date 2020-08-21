@@ -38,7 +38,7 @@ The application allows all users to  read posts written by registered users. The
 
 ## Database
 
-The django application uses sqlite3 database to store information of User, Post,Comment, and Profile model.
+The django application uses postgreSql database to store information of User, Post,Comment,Vote and Profile model.
 For every new model created run the following commands in the given order to prepare a table for that model in the database:
 ```
 python manage.py makemigrations
