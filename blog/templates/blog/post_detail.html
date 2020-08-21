@@ -44,15 +44,17 @@
     {% endfor %}
     {% if user.is_authenticated %}
       <footer class='container'>
+        <a href={% url "upvote" object.id %}>
+          <button type="button" class="btn btn-primary">
+            UpVote <span class="badge badge-light">{{Upvotes}}</span>
+          </button> 
+        </a>
+      </footer>
         {% if request.user == object.author %}
-            <p>Upvotes : {{Upvotes}}</p>
+          <div>  
             <a href= {% url "post-update" object.id %}><button class="btn btn-primary">Update Post</button></a>
             <a href={% url "post-delete" object.id %}><button class="btn btn-danger">Delete Post</button></a>
-          </footer> 
-        {% else %}
-        <a href={% url "upvote" object.id %}> <img src = "../../../media/Upvote.png" width=30px height=30px> </a>
-        {{Upvotes}}
-      </footer>
+          </div> 
         {% endif %} 
       <br>
       <form method='POST' class="container">
