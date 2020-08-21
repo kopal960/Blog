@@ -10,11 +10,11 @@ def create_profile_and_vote(sender,instance,created,**kwargs):
         Profile.objects.create(user = instance)
         instance.profile.save()
         for post in Post.objects.all():
-            Vote.objects.create(user = instance ,post=post)
-            instance.save()
+            vote = Vote.objects.create(user = instance ,post=post)
+            vote.save()
 @receiver(post_save ,sender=Post)
 def create_vote(sender , instance,created ,**kwargs):
     if created:
         for user in User.objects.all():
-            Vote.objects.create(post=instance , user = user)
-            instance.save()
+            vote = Vote.objects.create(post=instance , user = user)
+            vote.save()
