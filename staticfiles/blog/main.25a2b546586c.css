@@ -1,0 +1,17 @@
+.right{
+    margin-right: 0;
+}
+.heading {
+    color:black;
+}
+.equal{
+    width: 75px;
+    height: 75px;
+    aspect-ratio: 1;
+}
+.bg-white{
+    background: ivory;
+}
+body{
+    background: #ecfafc;
+}
