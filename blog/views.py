@@ -32,35 +32,37 @@ def newpost(request):
 class PostListView(ListView):
     model = Post
     context_object_name = 'posts'
-    paginate_by = 5
-    query=''
-    def get_queryset(self,*args,**kwargs):
-        post_filtered = Post.objects.filter(Q(title__icontains=self.query) |Q(author__username__icontains=self.query) )
-        return post_filtered.order_by('-date_posted','-pk')
-    def get(self, request):
-        if request.GET.get('query'):
-            self.query = request.GET.get('query')
-        return super().get(request)
-
-class UserPostListView(ListView):
-    model = Post
-    context_object_name = 'userposts'
+    ordering = '-date_posted' ,'-id'
     paginate_by = 5
     def get_context_data(self, **kwargs):          
         context = super().get_context_data(**kwargs)                     
-        posts_author = self.kwargs.get('username')
-        context["posts_author"] = posts_author
         context['page'] = 1
+        context['base_url'] = '?'
         return context
-    query = ''
-    def get_queryset(self,*args,**kwargs):
-        curUser = get_object_or_404(User , username = self.kwargs.get('username'))
-        return Post.objects.filter(author =curUser).filter(Q(title__icontains=self.query) |Q(author__username__icontains=self.query) ).order_by('-date_posted','-pk')
-    def get(self, request,username):
-        if request.GET.get('query'):
-            self.query = request.GET.get('query')
+    def get(self, request):
         return super().get(request)
 
+class UserPostListView(PostListView):
+    context_object_name = 'userposts'
+    def get_queryset(self,*args,**kwargs):
+        curUser = get_object_or_404(User , username = self.kwargs.get('username'))
+        query_set = super().get_queryset(*args , **kwargs)
+        return query_set.filter(author =curUser)
+    def get(self, request,username):
+        return super().get(request)
+
+class PostSearchView(PostListView):
+    query = ''
+    def get_queryset(self,*args,**kwargs): 
+        return super().get_queryset(*args ,**kwargs).filter( Q(title__icontains= self.query)|Q(author__username__icontains= self.query) )
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['base_url'] = '/search/?query'+'=' +self.query + "&"
+        return context
+    def get(self,request): 
+        self.query = request.GET.get('query')
+        return super().get(request)
+@login_required        
 def upvote(request,pk):
     post = get_object_or_404(Post ,pk = pk)
     vote = get_object_or_404(Vote , post = post, user= request.user)
@@ -90,7 +92,8 @@ class PostDetailView(DetailView):
            return redirect('post-detail', post.pk) 
 
 class CPostDetailView(LoginRequiredMixin ,PostDetailView):
-    model = Post
+    pass
+
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin ,UpdateView):
     model = Post
     fields = ['title','date_posted','description','content' ]

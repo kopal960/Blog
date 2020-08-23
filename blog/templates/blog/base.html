@@ -9,7 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href='{% static "blog/main.css" %} ' type="text/css">
+    <!-- <link href='{% static "blog/main.css" %} ' type="text/css"> -->
       <style>
         .right{
       margin-right: 0;
@@ -98,9 +98,9 @@
               </ul>
             </div>  
             {% if userposts %}
-              <form class="form-inline my-2 my-lg-0" action= {% url "user-posts" view.kwargs.username %} method='GET' >
+              <form class="form-inline my-2 my-lg-0" action= {% url "posts-search" %} method='GET' >
             {% else %}
-              <form class="form-inline my-2 my-lg-0" action= {% url "blog-home" %} method='GET' >                
+              <form class="form-inline my-2 my-lg-0" action= {% url "posts-search" %} method='GET' >                
             {% endif %}
                 <input class="form-control mr-sm-2 border" type="search" placeholder="Search by author or title" name='query' aria-label="Search">
                 <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
